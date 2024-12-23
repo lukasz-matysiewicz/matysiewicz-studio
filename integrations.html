@@ -1,0 +1,103 @@
+<!-- Delay loading scripts -->
+<!-- <script>
+      var scriptsExecuted = false;
+  var head = document.getElementsByTagName('head')[0] || document.documentElement;
+
+  function executeScripts() {
+    var fscripts = document.querySelectorAll('fscript');
+    [].forEach.call(fscripts, function(fscript) {
+      var script = document.createElement('script');
+      script.type = 'text/javascript';
+
+      if (fscript.hasAttributes()) {
+        for (var attributeKey in fscript.attributes) {
+          if (fscript.attributes.hasOwnProperty(attributeKey)) {
+            script[ fscript.attributes[ attributeKey ].name ] = fscript.attributes[ attributeKey ].value || true;
+          }
+        }
+      } else {
+        script.appendChild( document.createTextNode( fscript.innerHTML ) );
+      }
+
+      head.insertBefore( script, head.firstChild );
+    });
+  }
+
+  function initScripts() {
+    if (scriptsExecuted) {
+      return;
+    }
+
+    scriptsExecuted = true;
+
+    setTimeout(function() {
+      if ('requestIdleCallback' in window) {
+        requestIdleCallback(executeScripts, { timeout: 1000 });
+      } else {
+        executeScripts();
+      }
+    }, 1000);
+  }
+
+  window.addEventListener('scroll', function() {
+    initScripts();
+  }, false);
+
+  document.onclick = function() {
+    initScripts();
+  };
+  </script>  -->
+
+  <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MPKZHB"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+  <!-- Meta Pixel Code -->
+  <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '635297667567267');
+    fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=635297667567267&ev=PageView&noscript=1"
+  /></noscript>
+  <!-- End Meta Pixel Code -->
+  
+  <!-- LinkedIn -->
+  <script type="text/javascript">
+  _linkedin_partner_id = "4206409";
+  window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || [];
+  window._linkedin_data_partner_ids.push(_linkedin_partner_id);
+  </script><script type="text/javascript">
+  (function(l) {
+  if (!l){window.lintrk = function(a,b){window.lintrk.q.push([a,b])};
+  window.lintrk.q=[]}
+  var s = document.getElementsByTagName("script")[0];
+  var b = document.createElement("script");
+  b.type = "text/javascript";b.async = true;
+  b.src = "https://snap.licdn.com/li.lms-analytics/insight.min.js";
+  s.parentNode.insertBefore(b, s);})(window.lintrk);
+  </script>
+  <noscript>
+  <img height="1" width="1" style="display:none;" alt="" src="https://px.ads.linkedin.com/collect/?pid=4206409&fmt=gif" />
+  </noscript>
+  <!-- End LinkedIn -->
+  <!-- Start cookieyes banner -->
+	<!-- <script id="cookieyes" type="text/javascript" src="https://cdn-cookieyes.com/client_data/ebae6587041d59a0a733ce56/script.js"></script> -->
+<script type="text/javascript">
+  setTimeout(function() {
+      var script = document.createElement('script');
+      script.type = 'text/javascript';
+      script.src = 'https://cdn-cookieyes.com/client_data/ebae6587041d59a0a733ce56/script.js';
+      script.id = 'cookieyes';
+      document.body.appendChild(script);
+  }, 7000); 
+</script>
+<!-- End cookieyes banner -->
