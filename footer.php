@@ -15,6 +15,7 @@
 		<div class="site-info">
 			<span class="left"><?php echo date('Y'); ?> © matysiewicz.studio</span>
 			<span class="right">
+			<div><a href="https://github.com/lukasz-matysiewicz" target="_blank" rel="nofollow">Github</a></div>
 			<div><a href="https://www.linkedin.com/in/matysiewicz" target="_blank" rel="nofollow">Linkedin</a></div>
 			<div><a href="https://www.facebook.com/matysiewiczstudio" target="_blank" rel="nofollow">Facebook</a></div>
 			<div><a href="https://www.youtube.com/c/lukaszmatysiewicz" target="_blank" rel="nofollow">Youtube</a></div>

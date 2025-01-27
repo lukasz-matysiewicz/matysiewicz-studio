@@ -52,7 +52,10 @@ function initializeBasedOnNamespace() {
         initLoaderRecentWork();
         initLazyLoadAndPlayVideoInview();
         initFooter();
-        
+        break;
+      case "wordpress-plugins":
+        initLoaderPlugins(), 
+        initFooter();
         break;
     }
   } else {
@@ -453,6 +456,11 @@ function initLoaderContact() {
   });  
 }
 
+/* ------------------------------------------------------ Contact page ------------------------------------------------------ */
+function initLoaderContact() { 
+
+}
+
 /* ------------------------------------------------------ Magnetic Buttons ------------------------------------------------------ */
 /**
 * Magnetic Buttons
@@ -627,6 +635,7 @@ function initNextWord(data) {
     'about-me': 'About Me',
     'contact': 'Contact',
     'recent-work': 'Work',
+    'wordpress-plugins': 'Wordpress Plugins',
     // Add more mappings as necessary
   };
 

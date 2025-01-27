@@ -49,6 +49,18 @@ Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 	- Alignments
 
 --------------------------------------------------------------*/
+$uber-light-blue: #CAE0EE;
+$super-light-blue: #4FA4D8;
+$light-blue: #0755B0;
+$dark-blue: #00012A;
+$white: #ffffff;
+/* #F0F5F9
+$color__text-input: #00012A;
+$color__text-input-focus: #00012A;
+$color__link: #0755B0; //royalblue
+$color__link-visited: #4FA4D8; //purple
+$color__link-hover: #0755B0; //midnightblue
+*/
 
 // Import variables and mixins.
 @import "abstracts/abstracts";
@@ -101,21 +113,21 @@ Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 --------------------------------------------- */
 @import "utilities/alignments";
 
-$uber-light-blue: #CAE0EE;
-$super-light-blue: #4FA4D8;
-$light-blue: #0755B0;
-$dark-blue: #00012A;
-$white: #ffffff;
-/* #F0F5F9
-$color__text-input: #00012A;
-$color__text-input-focus: #00012A;
-$color__link: #0755B0; //royalblue
-$color__link-visited: #4FA4D8; //purple
-$color__link-hover: #0755B0; //midnightblue
-*/
+/*--------------------------------------------------------------
+# Blog
+--------------------------------------------------------------*/
+@import "components/blog/blog";
+
+
+
+
 .post-thumbnail {
 	display: none!important;
 }
+h1.entry-title {
+	display: none;
+}
+
 ::selection {
 	background-color: $dark-blue; /* Your desired background color */
 	color: $white; /* Optional: Change the text color */
@@ -123,14 +135,7 @@ $color__link-hover: #0755B0; //midnightblue
 img, video, canvas {
 	overflow: hidden!important;
 }
-/* header */
-h1.entry-title {
-	display: none;
-	//display: block;
-}
-// html {
-// 	scroll-behavior: smooth;
-// }
+
 html, body {
     overflow-x: hidden!important;
 }
@@ -855,7 +860,7 @@ li#menu-item-366 {
 			
 			#primary-menu a {
 				color: #fff;
-				margin: 30px 0 30px 0;
+				margin: 0;
 				font-size: 2rem;
 			}
 		}
@@ -890,6 +895,7 @@ li#menu-item-366 {
 	  40% 100%;
 	position: relative;
 	clip-path: inset(0 25%);
+	mask: linear-gradient(90deg,#0000,#000 25% 75%,#0000);
 	-webkit-mask: linear-gradient(90deg,#0000,#000 25% 75%,#0000);
 	cursor: pointer;
 	transition: 
@@ -922,6 +928,7 @@ li#menu-item-366 {
   }
   .menu-burger:focus-visible {
 	clip-path: none;
+	mask: none;
 	-webkit-mask: none;
 	border: none;
 	outline: 0;
@@ -1156,3 +1163,17 @@ video.galleryImage {
 .footerEmail::selection {
 	background: $light-blue;
 }
+
+
+/* Reset styles during transitions */
+// .barba-leave {
+//   .post-thumbnail,
+//   .post-content,
+//   .archive-posts {
+//     transition: none !important;
+//   }
+// }
+
+// .loading-container {
+// 	display: none!important;
+// }

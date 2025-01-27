@@ -53,7 +53,7 @@
     </div>
 
 <?php wp_body_open(); ?>
-<div id="page" class="site" data-barba="container" data-barba-namespace="<?php if (is_single() || is_page()) { global $post; echo $post->post_name; } else { bloginfo('name'); } ?>" data-scroll-container>
+<div id="page" class="site" data-barba="container" data-barba-namespace="<?php echo esc_attr(get_barba_namespace()); ?>" data-scroll-container>
 	<a class="skip-link screen-reader-text" href="#primary"><?php esc_html_e( 'Skip to content', 'matysiewicz-studio' ); ?></a>
 
 	<header id="masthead" class="site-header">

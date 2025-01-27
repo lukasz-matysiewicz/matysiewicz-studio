@@ -1,51 +1,47 @@
-<?php
-/**
- * The template for displaying archive pages
- *
- * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
- *
- * @package Matysiewicz_Studio
- */
+<?php get_header(); ?>
 
-get_header();
-?>
+<main id="primary" class="site-main archive-posts">
+    <?php if (have_posts()) : ?>
+        <header class="page-header">
+            <h1 class="archive-title"><span><?php single_cat_title(); ?></span></h1>
+        </header>
 
-	<main id="primary" class="site-main">
+        <div class="posts-grid">
+            <?php while (have_posts()) : the_post(); ?>
+                <article id="post-<?php the_ID(); ?>" <?php post_class('post-item'); ?>>
+                    <div class="post-content">
+                        <h2 class="post-title">
+                            <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+                        </h2>
+                        
+                        <div class="post-meta">
+                            <time datetime="<?php echo get_the_date('c'); ?>">
+                                <?php echo get_the_date(); ?>
+                            </time>
+                        </div>
 
-		<?php if ( have_posts() ) : ?>
+                        <div class="post-excerpt">
+                            <?php the_excerpt(); ?>
+                        </div>
 
-			<header class="page-header">
-				<?php
-				the_archive_title( '<h1 class="page-title">', '</h1>' );
-				the_archive_description( '<div class="archive-description">', '</div>' );
-				?>
-			</header><!-- .page-header -->
+                        <a href="<?php the_permalink(); ?>" class="read-more">
+                            Read More
+                        </a>
+                    </div>
 
-			<?php
-			/* Start the Loop */
-			while ( have_posts() ) :
-				the_post();
+                    <div class="post-thumbnail">
+                        <?php if (has_post_thumbnail()) : ?>
+                            <?php the_post_thumbnail('large'); ?>
+                        <?php endif; ?>
+                    </div>
+                </article>
+            <?php endwhile; ?>
+        </div>
 
-				/*
-				 * Include the Post-Type-specific template for the content.
-				 * If you want to override this in a child theme, then include a file
-				 * called content-___.php (where ___ is the Post Type name) and that will be used instead.
-				 */
-				get_template_part( 'template-parts/content', get_post_type() );
+        <?php the_posts_navigation(); ?>
 
-			endwhile;
+    <?php endif; ?>
+    <div class="cursor-follower"></div>
+</main>
 
-			the_posts_navigation();
-
-		else :
-
-			get_template_part( 'template-parts/content', 'none' );
-
-		endif;
-		?>
-
-	</main><!-- #main -->
-
-<?php
-get_sidebar();
-get_footer();
+<?php get_footer(); ?>
