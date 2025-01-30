@@ -9,7 +9,7 @@
 
 
  if (!defined('_S_VERSION')) {
-	 define('_S_VERSION', '1.0.4');
+	 define('_S_VERSION', '1.0.5');
  }
  
  // Autoload core files
