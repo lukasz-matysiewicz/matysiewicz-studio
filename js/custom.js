@@ -57,7 +57,12 @@ function initializeBasedOnNamespace() {
         initLoaderPlugins(), 
         initFooter();
         break;
+      case "animated-gutenberg-gallery":
+        initLoaderPlugins(), 
+        initFooter();
+        break;
     }
+    a
   } else {
     console.warn('Barba container not found');
   }
@@ -637,7 +642,8 @@ function initNextWord(data) {
         'case-studies': 'Case Studies',
         'archive': 'Archive',
         'search': 'Search Results',
-        'error-404': '404 Error'
+        'error-404': '404 Error',
+        'animated-gutenberg-gallery': 'Animated Gutenberg Gallery'
     };
 
     // Get display text with fallback
