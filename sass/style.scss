@@ -256,15 +256,11 @@ img.custom-logo {
 .me {
 	display: flex;
 	position: relative;
-		img {
-			position: absolute;
-			bottom: -30px;
+	// left: -10%;
+		figure {
+			position: relative;
+			bottom: -70px;
 			left: -40%;
-			z-index: 2;
-			//overflow: unset!important;
-			height: 800px;
-			width: auto;
-			min-width: fit-content;
 			@media (min-width: 1001px) and (max-width: 1300px) {
 				height: 750px;
 				left: -70%;
@@ -274,10 +270,19 @@ img.custom-logo {
 				left: -70%;
 			}
 			@media (max-width: 781px) {
-				height: 500px;
-				left: 60%;
+				// height: 500px;
+				// left: 60%;
+				display: none;
 			}
-	}
+			img {
+				// position: absolute;
+				z-index: 2;
+				//overflow: unset!important;
+				height: 800px;
+				width: auto;
+				min-width: fit-content;
+			}
+		}
 }
 
 .about {
@@ -1414,51 +1419,6 @@ img.custom-logo {
 }
 .homebanner {
 	clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
-}
-.lukasz {
-	font-size: 10rem;
-	white-space: nowrap; 
-	margin: 0;
-	padding: 0 15px;
-	@media (min-width: 782px) and (max-width: 1000px) {
-		font-size: 6rem!important;
-	}
-	@media (max-width: 781px) {
-		font-size: 3rem!important;
-	}
-	&-wrapper {
-		margin-top: 5rem!important;
-		margin-bottom: 3rem!important;
-		overflow: hidden;
-		display: flex;
-		//max-width: 80%;
-		}
-}
-.me {
-	display: flex;
-	position: relative;
-		img {
-			position: absolute;
-			bottom: -30px;
-			left: -40%;
-			z-index: 2;
-			//overflow: unset!important;
-			height: 800px;
-			width: auto;
-			min-width: fit-content;
-			@media (min-width: 1001px) and (max-width: 1300px) {
-				height: 750px;
-				left: -70%;
-			}
-			@media (min-width: 782px) and (max-width: 1000px) {
-				height: 600px;
-				left: -70%;
-			}
-			@media (max-width: 781px) {
-				height: 500px;
-				left: 60%;
-			}
-	}
 }
 
 .about {
