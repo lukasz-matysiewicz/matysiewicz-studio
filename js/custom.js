@@ -4,6 +4,7 @@ let locomotiveScroll;
 let nextNamespace = '';
 
 initPageTransitions();
+document.addEventListener('DOMContentLoaded', initPageTransitions);
 
 function initScript() {
     
@@ -57,12 +58,17 @@ function initializeBasedOnNamespace() {
         initLoaderPlugins(), 
         initFooter();
         break;
-      case "animated-gutenberg-gallery":
-        initLoaderPlugins(), 
+      case 'wordpress-plugins':
+      case 'animated-gutenberg-gallery':
+        initLoaderPlugins();
+        initFooter();
+        break;
+      case 'case-studies':
+      case 'product':  // Add this for WooCommerce single product
+      case 'shop':     // Add this for WooCommerce shop page
         initFooter();
         break;
     }
-    a
   } else {
     console.warn('Barba container not found');
   }
@@ -643,7 +649,9 @@ function initNextWord(data) {
         'archive': 'Archive',
         'search': 'Search Results',
         'error-404': '404 Error',
-        'animated-gutenberg-gallery': 'Animated Gutenberg Gallery'
+        'animated-gutenberg-gallery': 'Animated Gutenberg Gallery',
+        'product': 'WordPress Plugins',
+        'shop': 'Sklep',
     };
 
     // Get display text with fallback
@@ -774,10 +782,27 @@ function initSmoothScroll(container) {
   });
 }
 function initPageTransitions() {
+
+    if (document.body.classList.contains('woocommerce-page')) {
+      document.querySelector('.loading-container').style.display = 'none';
+      return; // Exit early if on WooCommerce page
+    }
+
     barba.init({
       sync: true,
       debug: false,
       timeout: 7000,
+      prevent: ({ el }) => {
+        // Prevent Barba from handling WooCommerce links
+        return (
+            el.classList.contains('woocommerce') ||
+            el.closest('.woocommerce') !== null ||
+            el.href?.includes('/shop/') ||
+            el.href?.includes('/product/') ||
+            el.href?.includes('/cart/') ||
+            el.href?.includes('/checkout/')
+        );
+      },
       transitions: [
         {
           name: 'default',

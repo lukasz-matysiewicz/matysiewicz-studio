@@ -1,7 +1,7 @@
 button,
 input[type="button"],
 input[type="reset"],
-input[type="submit"] {
+input[type="submit"]  {
 	border: 1px solid;
 	border-color: $color__border-button;
 	border-radius: 3px;
@@ -9,6 +9,7 @@ input[type="submit"] {
 	color: rgba(0, 0, 0, 0.8);
 	line-height: 1;
 	padding: 0.6em 1em 0.4em;
+
 
 	&:hover {
 		border-color: $color__border-button-hover;
@@ -18,4 +19,22 @@ input[type="submit"] {
 	&:focus {
 		border-color: $color__border-button-focus;
 	}
+}
+
+
+.woocommerce ul.products li.product a,
+.read-more, 
+.single_add_to_cart_button  {
+		display: inline-block;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        align-self: flex-start;
+        border: 2px solid!important;
+        border-color: $dark-blue!important;
+        border-radius: 0px;
+        background: #fff!important;
+        color: $dark-blue!important;
+        line-height: 1;
+        padding: 15px 20px;
+        text-transform: uppercase;
 }

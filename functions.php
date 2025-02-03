@@ -9,7 +9,7 @@
 
 
  if (!defined('_S_VERSION')) {
-	 define('_S_VERSION', '1.0.6');
+	 define('_S_VERSION', '1.0.9');
  }
  
  // Autoload core files
@@ -34,3 +34,8 @@
  if (defined('JETPACK__VERSION')) {
 	 require get_template_directory() . '/inc/jetpack.php';
  }
+
+ function child_theme_woocommerce_support() {
+    add_theme_support('woocommerce');
+}
+add_action('after_setup_theme', 'child_theme_woocommerce_support');
