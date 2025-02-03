@@ -105,7 +105,15 @@
 
 // archive
 
-.archive, .blog, .single-product, .woocommerce-page {
+
+.single-product, .woocommerce-page, .page-id-798 {
+    main {
+        max-width: 1200px;
+        margin: auto;
+        min-height: 700px;
+    }
+}
+.archive, .blog {
     main {
         max-width: 1200px;
         margin: auto;

@@ -574,7 +574,8 @@ input[type=submit]:focus {
 
 .woocommerce ul.products li.product a,
 .read-more,
-.single_add_to_cart_button {
+.single_add_to_cart_button,
+.page-id-798 .wp-block-button a {
   display: inline-block;
   padding: 0.5rem 1rem;
   text-decoration: none;
@@ -1037,22 +1038,28 @@ textarea {
   }
 }
 
-.archive main, .blog main, .single-product main, .woocommerce-page main {
+.single-product main, .woocommerce-page main, .page-id-798 main {
   max-width: 1200px;
   margin: auto;
   min-height: 700px;
 }
-.archive .post-thumbnail, .blog .post-thumbnail, .single-product .post-thumbnail, .woocommerce-page .post-thumbnail {
+
+.archive main, .blog main {
+  max-width: 1200px;
+  margin: auto;
+  min-height: 700px;
+}
+.archive .post-thumbnail, .blog .post-thumbnail {
   display: block !important;
 }
-.archive h1.archive-title, .blog h1.archive-title, .single-product h1.archive-title, .woocommerce-page h1.archive-title {
+.archive h1.archive-title, .blog h1.archive-title {
   text-align: center;
 }
-.archive .posts-grid, .blog .posts-grid, .single-product .posts-grid, .woocommerce-page .posts-grid {
+.archive .posts-grid, .blog .posts-grid {
   display: grid;
   gap: 2rem;
 }
-.archive .post-item, .blog .post-item, .single-product .post-item, .woocommerce-page .post-item {
+.archive .post-item, .blog .post-item {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 2rem;
@@ -1061,23 +1068,23 @@ textarea {
   position: relative;
   padding-bottom: 60px;
 }
-.archive .post-content, .blog .post-content, .single-product .post-content, .woocommerce-page .post-content {
+.archive .post-content, .blog .post-content {
   display: flex;
   flex-direction: column;
   gap: 1rem;
 }
-.archive .post-thumbnail img, .blog .post-thumbnail img, .single-product .post-thumbnail img, .woocommerce-page .post-thumbnail img {
+.archive .post-thumbnail img, .blog .post-thumbnail img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   border-radius: 30px;
 }
 @media (max-width: 768px) {
-  .archive .post-item, .blog .post-item, .single-product .post-item, .woocommerce-page .post-item {
+  .archive .post-item, .blog .post-item {
     grid-template-columns: 1fr;
   }
 }
-.archive .post-item:not(:last-child)::after, .blog .post-item:not(:last-child)::after, .single-product .post-item:not(:last-child)::after, .woocommerce-page .post-item:not(:last-child)::after {
+.archive .post-item:not(:last-child)::after, .blog .post-item:not(:last-child)::after {
   content: "";
   position: absolute;
   bottom: 0px;
@@ -2757,7 +2764,8 @@ input[type=submit]:focus {
 
 .woocommerce ul.products li.product a,
 .read-more,
-.single_add_to_cart_button {
+.single_add_to_cart_button,
+.page-id-798 .wp-block-button a {
   display: inline-block;
   padding: 0.5rem 1rem;
   text-decoration: none;
@@ -3220,22 +3228,28 @@ textarea {
   }
 }
 
-.archive main, .blog main, .single-product main, .woocommerce-page main {
+.single-product main, .woocommerce-page main, .page-id-798 main {
   max-width: 1200px;
   margin: auto;
   min-height: 700px;
 }
-.archive .post-thumbnail, .blog .post-thumbnail, .single-product .post-thumbnail, .woocommerce-page .post-thumbnail {
+
+.archive main, .blog main {
+  max-width: 1200px;
+  margin: auto;
+  min-height: 700px;
+}
+.archive .post-thumbnail, .blog .post-thumbnail {
   display: block !important;
 }
-.archive h1.archive-title, .blog h1.archive-title, .single-product h1.archive-title, .woocommerce-page h1.archive-title {
+.archive h1.archive-title, .blog h1.archive-title {
   text-align: center;
 }
-.archive .posts-grid, .blog .posts-grid, .single-product .posts-grid, .woocommerce-page .posts-grid {
+.archive .posts-grid, .blog .posts-grid {
   display: grid;
   gap: 2rem;
 }
-.archive .post-item, .blog .post-item, .single-product .post-item, .woocommerce-page .post-item {
+.archive .post-item, .blog .post-item {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 2rem;
@@ -3244,23 +3258,23 @@ textarea {
   position: relative;
   padding-bottom: 60px;
 }
-.archive .post-content, .blog .post-content, .single-product .post-content, .woocommerce-page .post-content {
+.archive .post-content, .blog .post-content {
   display: flex;
   flex-direction: column;
   gap: 1rem;
 }
-.archive .post-thumbnail img, .blog .post-thumbnail img, .single-product .post-thumbnail img, .woocommerce-page .post-thumbnail img {
+.archive .post-thumbnail img, .blog .post-thumbnail img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   border-radius: 30px;
 }
 @media (max-width: 768px) {
-  .archive .post-item, .blog .post-item, .single-product .post-item, .woocommerce-page .post-item {
+  .archive .post-item, .blog .post-item {
     grid-template-columns: 1fr;
   }
 }
-.archive .post-item:not(:last-child)::after, .blog .post-item:not(:last-child)::after, .single-product .post-item:not(:last-child)::after, .woocommerce-page .post-item:not(:last-child)::after {
+.archive .post-item:not(:last-child)::after, .blog .post-item:not(:last-child)::after {
   content: "";
   position: absolute;
   bottom: 0px;
