@@ -42,8 +42,11 @@ acronym {
 
 mark,
 ins {
-	background: $color__background-ins;
+	// background: $color__background-ins;
 	text-decoration: none;
+	background: #fff;
+	font-weight: bold;
+	color: red;
 }
 
 big {

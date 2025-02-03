@@ -652,6 +652,7 @@ function initNextWord(data) {
         'animated-gutenberg-gallery': 'Animated Gutenberg Gallery',
         'product': 'WordPress Plugins',
         'shop': 'Sklep',
+        'terms-and-conditions': 'Terms'
     };
 
     // Get display text with fallback

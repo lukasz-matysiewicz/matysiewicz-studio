@@ -25,7 +25,9 @@ input[type="submit"]  {
 .woocommerce ul.products li.product a,
 .read-more, 
 .single_add_to_cart_button,
-.page-id-798 .wp-block-button a  {
+.page-id-798 .wp-block-button a,
+.wc-block-cart__submit-container a,
+.wc-block-components-checkout-place-order-button  {
 		display: inline-block;
         padding: 0.5rem 1rem;
         text-decoration: none;

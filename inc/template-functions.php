@@ -35,3 +35,19 @@ function matysiewicz_studio_pingback_header() {
 	}
 }
 add_action( 'wp_head', 'matysiewicz_studio_pingback_header' );
+
+
+/**
+ * CC with new order to client
+ */
+
+ add_filter('woocommerce_email_headers', 'add_customer_cc_to_new_order_email', 10, 3);
+
+function add_customer_cc_to_new_order_email($headers, $email_id, $order) {
+    // Only modify new order notification emails
+    if ($email_id == 'new_order') {
+        $customer_email = $order->get_billing_email();
+        $headers .= 'Cc: ' . $customer_email . "\r\n";
+    }
+    return $headers;
+}
