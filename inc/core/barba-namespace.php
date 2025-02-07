@@ -31,6 +31,9 @@ function get_barba_namespace() {
     elseif (is_front_page()) {
         return 'home';
     }
+    elseif (is_cart()) {
+        return 'cart';
+    }
     
     return 'page'; // Default fallback
 }

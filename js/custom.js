@@ -60,9 +60,6 @@ function initializeBasedOnNamespace() {
         break;
       case 'wordpress-plugins':
       case 'animated-gutenberg-gallery':
-        initLoaderPlugins();
-        initFooter();
-        break;
       case 'case-studies':
       case 'product':  // Add this for WooCommerce single product
       case 'shop':     // Add this for WooCommerce shop page
@@ -652,7 +649,8 @@ function initNextWord(data) {
         'animated-gutenberg-gallery': 'Animated Gutenberg Gallery',
         'product': 'WordPress Plugins',
         'shop': 'Sklep',
-        'terms-and-conditions': 'Terms'
+        'terms-and-conditions': 'Terms',
+        'cart': 'Cart'
     };
 
     // Get display text with fallback
