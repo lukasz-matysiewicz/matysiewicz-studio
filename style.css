@@ -4348,31 +4348,41 @@ a:focus {
 
 .page-id-807 h1 strong,
 .page-id-807 h2 strong,
-.page-id-807 h3 strong {
+.page-id-807 h3 strong,
+.page-id-830 h1 strong,
+.page-id-830 h2 strong,
+.page-id-830 h3 strong {
   color: #f8d48c !important;
 }
-.page-id-807 h1 {
+.page-id-807 h1,
+.page-id-830 h1 {
   font-size: 2.8rem;
 }
-.page-id-807 h2 {
+.page-id-807 h2,
+.page-id-830 h2 {
   font-size: 2.3rem;
 }
-.page-id-807 .max1200 {
+.page-id-807 .max1200,
+.page-id-830 .max1200 {
   max-width: 1200px !important;
   margin: auto;
 }
-.page-id-807 .cta_bg {
+.page-id-807 .cta_bg,
+.page-id-830 .cta_bg {
   background: url(https://matysiewicz.studio/wp-content/uploads/2025/01/bg2.webp) center center no-repeat;
   background-size: cover;
 }
-.page-id-807 .price strong {
+.page-id-807 .price strong,
+.page-id-830 .price strong {
   font-size: 30px;
 }
-.page-id-807 html {
+.page-id-807 html,
+.page-id-830 html {
   scroll-behavior: smooth;
   scroll-padding-top: 100px; /* Adjust based on your header height */
 }
-.page-id-807 .agg-button a {
+.page-id-807 .agg-button a,
+.page-id-830 .agg-button a {
   background: #fff;
   color: #00012A;
   text-transform: uppercase;
@@ -4381,59 +4391,55 @@ a:focus {
   border: 1px solid #00012A;
   transition: all 0.3s ease;
 }
-.page-id-807 .agg-button a:hover {
+.page-id-807 .agg-button a:hover,
+.page-id-830 .agg-button a:hover {
   background: #f8d48c;
   color: #fff;
 }
-.page-id-807 .pricing-toggle-container {
-  max-width: 600px;
-  margin: 0 auto;
-  text-align: center;
-  padding: 2rem;
+.page-id-807 .pricing-buttons,
+.page-id-830 .pricing-buttons {
+  max-width: max-content;
+  border-radius: 40px;
+  padding: 5px;
+  margin: 0 auto 50px auto;
 }
-.page-id-807 .toggle-switches {
-  margin-bottom: 2rem;
-}
-.page-id-807 .period-toggle {
-  padding: 20px;
-}
-.page-id-807 .toggle-button {
-  background: #f0f0f0;
-  border: none;
-  padding: 1.5rem 2rem;
-  margin: 0 0.25rem;
-  cursor: pointer;
-  transition: background-color 0.3s;
-  border-radius: 10px;
-}
-.page-id-807 .toggle-button.active {
-  background: #00012A;
-  color: white;
-}
-.page-id-807 .price-display {
-  font-size: 2rem;
-  font-weight: bold;
-  margin: 1rem 0;
-  color: red;
-  padding-bottom: 40px;
-}
-.page-id-807 .regular-price {
-  text-decoration: line-through;
-  color: #000;
-  font-size: 1.5rem;
-  margin-right: 10px;
-}
-.page-id-807 .cta-button {
-  background: #fff;
-  color: #00012A;
-  text-transform: uppercase;
-  font-weight: bold;
-  padding: 25px 50px;
-  border: 1px solid #00012A;
+.page-id-807 .pricing-buttons a,
+.page-id-830 .pricing-buttons a {
   transition: all 0.3s ease;
-  border-radius: 10px;
 }
-.page-id-807 .cta-button:hover {
-  background: #f8d48c;
-  color: #fff;
+.page-id-807 .pricing-table,
+.page-id-830 .pricing-table {
+  max-width: 1200px;
+  margin: auto;
+}
+.page-id-807 .pricing-table .lifetime,
+.page-id-830 .pricing-table .lifetime {
+  display: none;
+}
+.page-id-807 .pricing-table .oneyear,
+.page-id-830 .pricing-table .oneyear {
+  display: block;
+}
+.page-id-807 .pricing-table h2,
+.page-id-830 .pricing-table h2 {
+  margin-bottom: 0;
+}
+.page-id-807 .pricing-table .price,
+.page-id-807 .pricing-table .year,
+.page-id-830 .pricing-table .price,
+.page-id-830 .pricing-table .year {
+  margin: 0;
+}
+.page-id-807 .pricing-table > div,
+.page-id-830 .pricing-table > div {
+  border-radius: 25px;
+}
+.page-id-807 .pricing-table .plan-buttons a,
+.page-id-830 .pricing-table .plan-buttons a {
+  transition: all 0.3s ease;
+}
+.page-id-807 .pricing-table .plan-buttons a:hover,
+.page-id-830 .pricing-table .plan-buttons a:hover {
+  background-color: #00012A !important;
+  color: #ffffff !important;
 }/*# sourceMappingURL=style.css.map */

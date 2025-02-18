@@ -2325,8 +2325,8 @@ video.galleryImage {
 	margin: auto;
 }
 //AGG page
-	.page-id-807 {
-	// .page-id-830 {
+	.page-id-807,
+	.page-id-830 {
 	h1 strong, 
 	h2 strong, 
 	h3 strong {
@@ -2369,62 +2369,42 @@ video.galleryImage {
 			color: #fff;
 		}
 	}
-
-	.pricing-toggle-container {
-		max-width: 600px;
-		margin: 0 auto;
-		text-align: center;
-		padding: 2rem;
-	}
-	
-	.toggle-switches {
-		margin-bottom: 2rem;
-	}
-	.period-toggle {
-		padding: 20px;
-	}
-	
-	.toggle-button {
-		background: #f0f0f0;
-		border: none;
-		padding: 1.5rem 2rem;
-		margin: 0 0.25rem;
-		cursor: pointer;
-		transition: background-color 0.3s;
-		border-radius: 10px;
-	}
-	
-	.toggle-button.active {
-		background: $dark-blue;
-		color: white;
-	}
-	
-	.price-display {
-		font-size: 2rem;
-		font-weight: bold;
-		margin: 1rem 0;
-		color: red;
-		padding-bottom: 40px;
-	}
-	.regular-price {
-		text-decoration: line-through;
-		color: #000;
-		font-size: 1.5rem;
-		margin-right: 10px;
-	}
-	
-	.cta-button {
-		background: #fff;
-		color: #00012A;
-		text-transform: uppercase;
-		font-weight: bold;
-		padding: 25px 50px;
-		border: 1px solid #00012A;
-		transition: all 0.3s ease;
-		border-radius: 10px;
-		&:hover {
-			background: $agg-color;
-			color: #fff;
+	.pricing {
+		&-buttons {
+			max-width: max-content;
+			border-radius: 40px;
+			padding: 5px;
+			margin: 0 auto 50px auto;
+			a {
+				transition: all 0.3s ease;
+			}
+		}	
+		&-table {
+			max-width: 1200px;
+			margin: auto;
+			.lifetime {
+				display: none;
+			}
+			.oneyear {
+				display: block;
+			}
+			h2 {
+				margin-bottom: 0;
+			}
+			.price,
+			.year {
+				margin: 0;
+			}
+			> div {
+				border-radius: 25px;
+			}
+			.plan-buttons a {
+				transition: all 0.3s ease;
+				&:hover {
+					background-color: $dark-blue !important;
+					color: $white!important;
+				}
+			}
 		}
 	}
 }
