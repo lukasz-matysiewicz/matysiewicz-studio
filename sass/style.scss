@@ -55,6 +55,7 @@ $light-blue: #0755B0;
 $dark-blue: #00012A;
 $white: #ffffff;
 $agg-color: #f8d48c;
+$ags-color: #b30026;
 
 /* #F0F5F9
 $color__text-input: #00012A;
@@ -2325,13 +2326,10 @@ video.galleryImage {
 	margin: auto;
 }
 //AGG page
-	.page-id-807,
-	.page-id-830 {
-	h1 strong, 
-	h2 strong, 
-	h3 strong {
-	color: $agg-color!important;
-	}
+.page-id-807,
+.page-id-830,
+.page-id-963,
+.page-id-980 {
 	h1 {
 		font-size: 2.8rem;
 	}
@@ -2342,12 +2340,9 @@ video.galleryImage {
 		max-width: 1200px!important;
 		margin: auto;
 	}
-
-	.cta_bg {
-		background: url(https://matysiewicz.studio/wp-content/uploads/2025/01/bg2.webp) center center no-repeat;
-		background-size: cover;
+	#aggPremiumGallery {
+		display: none;
 	}
-
 	.price strong {
 		font-size: 30px;
 	}
@@ -2365,7 +2360,6 @@ video.galleryImage {
 		border: 1px solid #00012A;
 		transition: all 0.3s ease;
 		&:hover {
-			background: $agg-color;
 			color: #fff;
 		}
 	}
@@ -2406,5 +2400,41 @@ video.galleryImage {
 				}
 			}
 		}
+	}
+}
+.page-id-807,
+.page-id-830 {
+	.cta_bg {
+		background: url(https://matysiewicz.studio/wp-content/uploads/2025/01/bg2.webp) center center no-repeat;
+		background-size: cover;
+		margin: 0;
+	}
+	h1 strong, 
+	h2 strong, 
+	h3 strong {
+		color: $agg-color!important;
+		}
+		.agg-button a {
+			&:hover {
+				background: $agg-color;
+			}
+	}
+}
+.page-id-963,
+.page-id-980 {
+	.cta_bg {
+		background: url(https://matysiewicz.studio/wp-content/uploads/2025/02/bg-red.webp) center center no-repeat;
+		background-size: cover;
+		margin: 0;
+	}
+	h1 strong, 
+	h2 strong, 
+	h3 strong {
+		color: $ags-color!important;
+		}
+		.agg-button a {
+			&:hover {
+				background: $ags-color;
+			}
 	}
 }

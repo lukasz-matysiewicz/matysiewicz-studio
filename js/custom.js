@@ -60,6 +60,7 @@ function initializeBasedOnNamespace() {
         break;
       case 'wordpress-plugins':
       case 'animated-gutenberg-gallery':
+        case 'animated-gutenberg-slider':
       case 'case-studies':
       case 'product':  // Add this for WooCommerce single product
       case 'shop':     // Add this for WooCommerce shop page
@@ -647,6 +648,7 @@ function initNextWord(data) {
         'search': 'Search Results',
         'error-404': '404 Error',
         'animated-gutenberg-gallery': 'Animated Gutenberg Gallery',
+        'animated-gutenberg-slider': 'Animated Gutenberg Slider',
         'product': 'WordPress Plugins',
         'shop': 'Sklep',
         'terms-and-conditions': 'Terms',

@@ -4346,43 +4346,48 @@ a:focus {
   margin: auto;
 }
 
-.page-id-807 h1 strong,
-.page-id-807 h2 strong,
-.page-id-807 h3 strong,
-.page-id-830 h1 strong,
-.page-id-830 h2 strong,
-.page-id-830 h3 strong {
-  color: #f8d48c !important;
-}
 .page-id-807 h1,
-.page-id-830 h1 {
+.page-id-830 h1,
+.page-id-963 h1,
+.page-id-980 h1 {
   font-size: 2.8rem;
 }
 .page-id-807 h2,
-.page-id-830 h2 {
+.page-id-830 h2,
+.page-id-963 h2,
+.page-id-980 h2 {
   font-size: 2.3rem;
 }
 .page-id-807 .max1200,
-.page-id-830 .max1200 {
+.page-id-830 .max1200,
+.page-id-963 .max1200,
+.page-id-980 .max1200 {
   max-width: 1200px !important;
   margin: auto;
 }
-.page-id-807 .cta_bg,
-.page-id-830 .cta_bg {
-  background: url(https://matysiewicz.studio/wp-content/uploads/2025/01/bg2.webp) center center no-repeat;
-  background-size: cover;
+.page-id-807 #aggPremiumGallery,
+.page-id-830 #aggPremiumGallery,
+.page-id-963 #aggPremiumGallery,
+.page-id-980 #aggPremiumGallery {
+  display: none;
 }
 .page-id-807 .price strong,
-.page-id-830 .price strong {
+.page-id-830 .price strong,
+.page-id-963 .price strong,
+.page-id-980 .price strong {
   font-size: 30px;
 }
 .page-id-807 html,
-.page-id-830 html {
+.page-id-830 html,
+.page-id-963 html,
+.page-id-980 html {
   scroll-behavior: smooth;
   scroll-padding-top: 100px; /* Adjust based on your header height */
 }
 .page-id-807 .agg-button a,
-.page-id-830 .agg-button a {
+.page-id-830 .agg-button a,
+.page-id-963 .agg-button a,
+.page-id-980 .agg-button a {
   background: #fff;
   color: #00012A;
   text-transform: uppercase;
@@ -4392,54 +4397,115 @@ a:focus {
   transition: all 0.3s ease;
 }
 .page-id-807 .agg-button a:hover,
-.page-id-830 .agg-button a:hover {
-  background: #f8d48c;
+.page-id-830 .agg-button a:hover,
+.page-id-963 .agg-button a:hover,
+.page-id-980 .agg-button a:hover {
   color: #fff;
 }
 .page-id-807 .pricing-buttons,
-.page-id-830 .pricing-buttons {
+.page-id-830 .pricing-buttons,
+.page-id-963 .pricing-buttons,
+.page-id-980 .pricing-buttons {
   max-width: max-content;
   border-radius: 40px;
   padding: 5px;
   margin: 0 auto 50px auto;
 }
 .page-id-807 .pricing-buttons a,
-.page-id-830 .pricing-buttons a {
+.page-id-830 .pricing-buttons a,
+.page-id-963 .pricing-buttons a,
+.page-id-980 .pricing-buttons a {
   transition: all 0.3s ease;
 }
 .page-id-807 .pricing-table,
-.page-id-830 .pricing-table {
+.page-id-830 .pricing-table,
+.page-id-963 .pricing-table,
+.page-id-980 .pricing-table {
   max-width: 1200px;
   margin: auto;
 }
 .page-id-807 .pricing-table .lifetime,
-.page-id-830 .pricing-table .lifetime {
+.page-id-830 .pricing-table .lifetime,
+.page-id-963 .pricing-table .lifetime,
+.page-id-980 .pricing-table .lifetime {
   display: none;
 }
 .page-id-807 .pricing-table .oneyear,
-.page-id-830 .pricing-table .oneyear {
+.page-id-830 .pricing-table .oneyear,
+.page-id-963 .pricing-table .oneyear,
+.page-id-980 .pricing-table .oneyear {
   display: block;
 }
 .page-id-807 .pricing-table h2,
-.page-id-830 .pricing-table h2 {
+.page-id-830 .pricing-table h2,
+.page-id-963 .pricing-table h2,
+.page-id-980 .pricing-table h2 {
   margin-bottom: 0;
 }
 .page-id-807 .pricing-table .price,
 .page-id-807 .pricing-table .year,
 .page-id-830 .pricing-table .price,
-.page-id-830 .pricing-table .year {
+.page-id-830 .pricing-table .year,
+.page-id-963 .pricing-table .price,
+.page-id-963 .pricing-table .year,
+.page-id-980 .pricing-table .price,
+.page-id-980 .pricing-table .year {
   margin: 0;
 }
 .page-id-807 .pricing-table > div,
-.page-id-830 .pricing-table > div {
+.page-id-830 .pricing-table > div,
+.page-id-963 .pricing-table > div,
+.page-id-980 .pricing-table > div {
   border-radius: 25px;
 }
 .page-id-807 .pricing-table .plan-buttons a,
-.page-id-830 .pricing-table .plan-buttons a {
+.page-id-830 .pricing-table .plan-buttons a,
+.page-id-963 .pricing-table .plan-buttons a,
+.page-id-980 .pricing-table .plan-buttons a {
   transition: all 0.3s ease;
 }
 .page-id-807 .pricing-table .plan-buttons a:hover,
-.page-id-830 .pricing-table .plan-buttons a:hover {
+.page-id-830 .pricing-table .plan-buttons a:hover,
+.page-id-963 .pricing-table .plan-buttons a:hover,
+.page-id-980 .pricing-table .plan-buttons a:hover {
   background-color: #00012A !important;
   color: #ffffff !important;
+}
+
+.page-id-807 .cta_bg,
+.page-id-830 .cta_bg {
+  background: url(https://matysiewicz.studio/wp-content/uploads/2025/01/bg2.webp) center center no-repeat;
+  background-size: cover;
+  margin: 0;
+}
+.page-id-807 h1 strong,
+.page-id-807 h2 strong,
+.page-id-807 h3 strong,
+.page-id-830 h1 strong,
+.page-id-830 h2 strong,
+.page-id-830 h3 strong {
+  color: #f8d48c !important;
+}
+.page-id-807 .agg-button a:hover,
+.page-id-830 .agg-button a:hover {
+  background: #f8d48c;
+}
+
+.page-id-963 .cta_bg,
+.page-id-980 .cta_bg {
+  background: url(https://matysiewicz.studio/wp-content/uploads/2025/02/bg-red.webp) center center no-repeat;
+  background-size: cover;
+  margin: 0;
+}
+.page-id-963 h1 strong,
+.page-id-963 h2 strong,
+.page-id-963 h3 strong,
+.page-id-980 h1 strong,
+.page-id-980 h2 strong,
+.page-id-980 h3 strong {
+  color: #b30026 !important;
+}
+.page-id-963 .agg-button a:hover,
+.page-id-980 .agg-button a:hover {
+  background: #b30026;
 }/*# sourceMappingURL=style.css.map */
