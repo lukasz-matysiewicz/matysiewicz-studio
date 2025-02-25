@@ -15,7 +15,7 @@ function enqueue_scripts() {
    wp_enqueue_script('gsap-st', 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/ScrollTrigger.min.js', ['gsap-js'], _S_VERSION, true);
    wp_enqueue_script('theme-gsap-custom', get_template_directory_uri() . '/js/custom.js', ['gsap-js'], _S_VERSION, true);
    // wp_enqueue_script('not-gsap-js', get_template_directory_uri() . '/js/not-gsap.js', [], _S_VERSION, true);
-   if (is_page(830, 807)) {
+   if (is_page([830, 807, 963, 980])) {
       wp_enqueue_script('pricing-table-js', get_template_directory_uri() . '/js/pricing-table.js', [], _S_VERSION, true);
   }
    if (is_single()) {

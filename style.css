@@ -4365,12 +4365,6 @@ a:focus {
   max-width: 1200px !important;
   margin: auto;
 }
-.page-id-807 #aggPremiumGallery,
-.page-id-830 #aggPremiumGallery,
-.page-id-963 #aggPremiumGallery,
-.page-id-980 #aggPremiumGallery {
-  display: none;
-}
 .page-id-807 .price strong,
 .page-id-830 .price strong,
 .page-id-963 .price strong,
