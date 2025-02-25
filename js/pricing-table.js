@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Detect page ID to apply the correct color
     let activeColor;
     if (document.body.classList.contains('page-id-807') || document.body.classList.contains('page-id-830')) {
-        activeColor = '#f8d48c'; // agg-color
+        activeColor = '#FCB901'; // agg-color
     } else if (document.body.classList.contains('page-id-963') || document.body.classList.contains('page-id-980')) {
         activeColor = '#b30026'; // ags-color
     } else {
