@@ -1,0 +1,15 @@
+#login[_ngcontent-c10] header.md-accent.md-hue-2[_ngcontent-c10],
+.mat-fab.mat-primary, .mat-mini-fab.mat-primary, .mat-raised-button.mat-primary,
+header[_ngcontent-c0], .mat-toolbar.mat-primary {
+  background-color: #0755B0;
+}
+
+a:not(mat-button):not(.mat-button):not(mat-raised-button):not(.mat-raised-button), a:not(mat-button):not(.mat-button):not(mat-raised-button):not(.mat-raised-button):link,
+.mat-button.mat-primary, .mat-icon-button.mat-primary, .mat-stroked-button.mat-primary,
+[_nghost-c28] mat-panel-title {
+  color: #0755B0;
+}
+
+a:not(mat-button):not(.mat-button):not(mat-raised-button):not(.mat-raised-button):hover {
+  color: #00012A;
+}/*# sourceMappingURL=freemius.css.map */
