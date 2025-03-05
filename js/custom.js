@@ -55,8 +55,8 @@ function initializeBasedOnNamespace() {
         initFooter();
         break;
       case "wordpress-plugins":
-        initLoaderPlugins(), 
-        initFooter();
+        initLoaderPlugins();
+        // initFooter();
         break;
       case 'wordpress-plugins':
       case 'animated-gutenberg-gallery':
@@ -65,7 +65,7 @@ function initializeBasedOnNamespace() {
       case 'my-account':
       case 'product':  // Add this for WooCommerce single product
       case 'shop':     // Add this for WooCommerce shop page
-        initFooter();
+        // initFooter();
         break;
     }
   } else {
@@ -649,6 +649,7 @@ function initNextWord(data) {
         'archive': 'Archive',
         'search': 'Search Results',
         'error-404': '404 Error',
+        'thank-you': 'Thank you',
         'animated-gutenberg-gallery': 'Animated Gutenberg Gallery',
         'animated-gutenberg-slider': 'Animated Gutenberg Slider',
         'product': 'WordPress Plugins',
@@ -826,7 +827,8 @@ function initPageTransitions() {
                 'single',
                 'home',
                 'contact',
-                'error404'
+                'error404',
+                'thank-you'
               ];
               
               if (!data.next.namespace.includes('case-studies')) {

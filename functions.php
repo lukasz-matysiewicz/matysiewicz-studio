@@ -9,13 +9,14 @@
 
 
  if (!defined('_S_VERSION')) {
-	 define('_S_VERSION', '1.1.8');
+	 define('_S_VERSION', '1.2.3');
  }
  
  // Autoload core files
  $core_includes = [
 	 '/inc/core/init.php',
 	 '/inc/core/scripts.php',
+	 '/inc/core/integrations.php',
 	 '/inc/functions/comments.php',
 	 '/inc/functions/login.php',
 	 '/inc/functions/cleanup.php',

@@ -24,17 +24,6 @@
 	<link rel="profile" href="https://gmpg.org/xfn/11">
 	<meta name="description" content="Lukasz Matysiewicz - Designer, Developer, Digital Artist">
 	<link rel="stylesheet" href="https://matysiewicz.studio/wp-content/themes/matysiewicz-studio/fonts.css">
-	<!-- <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
-	<link href="https://fonts.googleapis.com/css?family=Poppins:300,600,700&display=swap" rel="stylesheet"> -->
-	<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" defer></script> -->
-	
-	<!-- Google Tag Manager -->
-	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-	new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-	j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-	'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-	})(window,document,'script','dataLayer','GTM-MPKZHB');</script>
-	<!-- End Google Tag Manager -->
 	<?php wp_head(); ?>
 </head>
 

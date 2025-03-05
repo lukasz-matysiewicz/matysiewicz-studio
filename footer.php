@@ -26,6 +26,5 @@
 </div><!-- #page -->
 
 <?php wp_footer(); ?>
-<?php include('integrations.html'); ?>
 </body>
 </html>
