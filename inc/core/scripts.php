@@ -8,13 +8,19 @@ function enqueue_styles() {
 }
 
 function enqueue_scripts() {
+   // Local scripts
    wp_enqueue_script('navigation', get_template_directory_uri() . '/js/navigation.js', [], _S_VERSION, true);
-   wp_enqueue_script('locomotive-scroll', 'https://cdn.jsdelivr.net/npm/locomotive-scroll@beta/bundled/locomotive-scroll.min.js', [], _S_VERSION, true);
-   wp_enqueue_script('barba-js', 'https://unpkg.com/@barba/core', [], _S_VERSION, true);
-   wp_enqueue_script('gsap-js', 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/gsap.min.js', [], _S_VERSION, true);
-   wp_enqueue_script('gsap-st', 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/ScrollTrigger.min.js', ['gsap-js'], _S_VERSION, true);
+   
+   // Replace CDN scripts with local versions
+   wp_enqueue_script('locomotive-scroll', get_template_directory_uri() . '/js/fallback/locomotive-scroll.min.js', [], _S_VERSION, true);
+   wp_enqueue_script('barba-js', get_template_directory_uri() . '/js/fallback/barba.min.js', [], _S_VERSION, true);
+   wp_enqueue_script('gsap-js', get_template_directory_uri() . '/js/fallback/gsap.min.js', [], _S_VERSION, true);
+   wp_enqueue_script('gsap-st', get_template_directory_uri() . '/js/fallback/ScrollTrigger.min.js', ['gsap-js'], _S_VERSION, true);
+   
+   // Custom scripts remain the same
    wp_enqueue_script('theme-gsap-custom', get_template_directory_uri() . '/js/custom.js', ['gsap-js'], _S_VERSION, true);
-   // wp_enqueue_script('not-gsap-js', get_template_directory_uri() . '/js/not-gsap.js', [], _S_VERSION, true);
+   
+   // Conditional scripts
    if (is_page(array(807, 830, 963, 980))) {
       wp_enqueue_script('freemius-checkout', 'https://checkout.freemius.com/js/v1/', array(), null, true);
    }

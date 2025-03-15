@@ -19,39 +19,73 @@ function add_gtm_head() {
  */
 function add_google_ads_tracking() {
     ?>
-    <!-- Global site tag (gtag.js) - Google Ads -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-977229610"></script>
+    <!-- Google Ads tracking with error handling -->
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'AW-977229610', {
-        'send_page_view': true
-      });
-      
-      // Define a global function that will be called only when a purchase is completed
-      window.trackFreemiusPurchase = function(transactionId, orderTotal, planId, planName) {
-          gtag('event', 'conversion', {
-              'send_to': 'AW-977229610/YUzpCMKIsqYaEKqu_dED',
-              'value': orderTotal,
-              'currency': 'USD',
-              'transaction_id': transactionId
-          });
-          
-          // Enhanced ecommerce tracking
-          gtag('event', 'purchase', {
-              'transaction_id': transactionId,
-              'value': orderTotal,
-              'currency': 'USD',
-              'items': [{
-                  'id': planId,
-                  'name': planName,
-                  'quantity': 1,
-                  'price': orderTotal
-              }]
-          });
-      };
+    (function() {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        
+        gtag('config', 'AW-977229610', {
+          'send_page_view': true
+        });
+        
+        // Add robust error handling
+        window.trackFreemiusPurchase = function(transactionId, orderTotal, planId, planName) {
+            try {
+                console.log('Processing purchase tracking:', {
+                    'transaction_id': transactionId,
+                    'value': orderTotal,
+                    'plan_id': planId,
+                    'plan_name': planName
+                });
+                
+                gtag('event', 'conversion', {
+                    'send_to': 'AW-977229610/YUzpCMKIsqYaEKqu_dED',
+                    'value': orderTotal,
+                    'currency': 'USD',
+                    'transaction_id': transactionId
+                });
+                
+                gtag('event', 'purchase', {
+                    'transaction_id': transactionId,
+                    'value': orderTotal,
+                    'currency': 'USD',
+                    'items': [{
+                        'id': planId,
+                        'name': planName,
+                        'quantity': 1,
+                        'price': orderTotal
+                    }]
+                });
+                
+                console.log('Purchase tracking complete');
+            } catch(e) {
+                console.error('Error during purchase tracking:', e);
+            }
+        };
+    })();
+    </script>
+    
+    <!-- Load Google Ads script with error handling -->
+    <script>
+    (function() {
+        var script = document.createElement('script');
+        script.async = true;
+        script.src = 'https://www.googletagmanager.com/gtag/js?id=AW-977229610';
+        
+        script.onerror = function() {
+            console.warn('Google Ads script failed to load');
+            // Define fallback gtag function if needed
+            if (typeof gtag !== 'function') {
+                window.gtag = function() {
+                    console.log('Google Ads tracking called but script not loaded:', arguments);
+                };
+            }
+        };
+        
+        document.head.appendChild(script);
+    })();
     </script>
     <?php
 }

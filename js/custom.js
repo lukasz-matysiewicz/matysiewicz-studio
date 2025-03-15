@@ -1,16 +1,36 @@
 /* ------------------------------------------------------ General ------------------------------------------------------ */
-gsap.registerPlugin(ScrollTrigger);
+// Check and register GSAP plugins safely
+if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger);
+} else {
+  console.warn("GSAP or ScrollTrigger not available");
+}
+
 let locomotiveScroll;
 let nextNamespace = '';
+let currentNamespace = '';
 
-initPageTransitions();
-document.addEventListener('DOMContentLoaded', initPageTransitions);
+// Initialize page transitions safely
+document.addEventListener('DOMContentLoaded', function() {
+  if (typeof barba !== 'undefined') {
+      console.log("Barba.js found, initializing page transitions");
+      initPageTransitions();
+  } else {
+      console.warn("Barba.js not available, initializing without transitions");
+      initScript();
+      
+      // Hide loading screen if it exists
+      const loadingScreen = document.querySelector('.loading-screen');
+      if (loadingScreen) {
+          loadingScreen.style.display = 'none';
+      }
+  }
+});
 
 function initScript() {
-    
   function isTouchScreenDevice() {
       return 'ontouchstart' in window || navigator.maxTouchPoints;      
-  };
+  }
 
   if(isTouchScreenDevice()){
       //TouchScreen
@@ -21,8 +41,12 @@ function initScript() {
       //nonTouchScreen
       initializeBasedOnNamespace();
       initMenuButton();
-      initMagneticEffect();
-      initStickyCursor();
+      if (typeof gsap !== 'undefined') {
+          initMagneticEffect();
+          initStickyCursor();
+      } else {
+          console.warn("GSAP not loaded, skipping magnetic effect and sticky cursor");
+      }
   }
 }
 
@@ -786,134 +810,110 @@ function initSmoothScroll(container) {
   });
 }
 function initPageTransitions() {
-
-    if (document.body.classList.contains('woocommerce-page')) {
-      document.querySelector('.loading-container').style.display = 'none';
-      return; // Exit early if on WooCommerce page
-    }
-
-    barba.init({
-      sync: true,
-      debug: false,
-      timeout: 7000,
-      prevent: ({ el }) => {
-        // Prevent Barba from handling WooCommerce links
-        return (
-            el.classList.contains('woocommerce') ||
-            el.closest('.woocommerce') !== null ||
-            el.href?.includes('/shop/') ||
-            el.href?.includes('/product/') ||
-            el.href?.includes('/cart/') ||
-            el.href?.includes('/checkout/')
-        );
-      },
-      transitions: [
-        {
-          name: 'default',
-          async once(data) {
-            initNextWord(data);
-            updateBodyClasses(data.next.html);
-            pageTransitionIn();
-            await delay(1300);
-            initScript();
-            initSmoothScroll();
-            window.scrollTo(0, 0);
-          },
-          async leave(data) {
-            const currentContainer = document.querySelector('[data-barba="container"]');
-            if (currentContainer) {
-              const classesToRemove = [
-                'page',
-                'single',
-                'home',
-                'contact',
-                'error404',
-                'thank-you'
-              ];
-              
-              if (!data.next.namespace.includes('case-studies')) {
-                classesToRemove.push('archive', 'blog');
-              }
-              
-              document.body.classList.remove(...classesToRemove);
-              
-              if (!data.next.namespace.includes('case-studies')) {
-                const elementsToReset = document.querySelectorAll('.post-thumbnail:not(.archive-posts *), .post-content:not(.archive-posts *)');
-                elementsToReset.forEach(element => {
-                  element.removeAttribute('style');
-                });
-              }
-            }
-            
-            pageTransitionOut();
-            // Reduced delay to make transition more instant
-            await delay(50);
-          },
-          async enter(data) {
-            const parser = new DOMParser();
-            const newDOM = parser.parseFromString(data.next.html, 'text/html');
-            const newBodyClasses = newDOM.body.getAttribute('class');
-            
-            if (data.next.namespace.includes('case-studies') && document.body.classList.contains('archive')) {
-              const archiveClasses = Array.from(document.body.classList)
-                .filter(cls => cls.includes('archive') || cls.includes('category'));
-              document.body.className = newBodyClasses + ' ' + archiveClasses.join(' ');
-            } else {
-              document.body.className = newBodyClasses;
-            }
-            
-            // Removed delay before pageTransitionIn
-            pageTransitionIn();
-            await delay(1300);
-          },
-          async beforeEnter(data) {
-            updateNamespace(data.next.namespace);
-            initNextWord(data);
-            initWPFormsRemove();
-            
-            // Only clean specific styles based on transition type
-            if (data.next.namespace.includes('case-studies')) {
-              cleanupArchiveStyles();
-            } else {
-              cleanupPageStyles();
-            }
-          },
-          async afterEnter(data) {
-            setTimeout(() => {
-              initScript();
-            }, 100);
-            
-            setTimeout(() => {
-              initNavigation();
-            }, 100);
-            
-            initSmoothScroll();
-            window.scrollTo(0, 0);
-            
-            setTimeout(() => {
-              initWPFormsRender();
-            }, 100);
-          }
-        },
-        {
-          name: 'home',
-          from: {},
-          to: {
-            namespace: ['home']
-          },
-          async once(data) {
-            window.scrollTo(0, 0);
-            initHomeWord();
-            updateBodyClasses(data.next.html);
-            pageTransitionIn();
-            await delay(1300);
-            initScript();
-            initSmoothScroll();
-          }
-        }
-      ]
-    });
+  // Check if barba is defined
+  if (typeof barba === 'undefined') {
+      console.error('Barba.js is not loaded, cannot initialize page transitions');
+      // Initialize other functionality without page transitions
+      initScript();
+      return;
   }
+  
+  // Check if document.body exists and if we're on a WooCommerce page
+  if (!document.body || (document.body.classList && document.body.classList.contains('woocommerce-page'))) {
+      const loadingContainer = document.querySelector('.loading-container');
+      if (loadingContainer) {
+          loadingContainer.style.display = 'none';
+      }
+      // Initialize other functionality
+      initScript();
+      return;
+  }
+
+  // Continue with normal Barba initialization
+  try {
+      barba.init({
+          sync: true,
+          debug: false,
+          timeout: 7000,
+          prevent: ({ el }) => {
+              // Prevent Barba from handling WooCommerce links
+              return (
+                  el.classList.contains('woocommerce') ||
+                  el.closest('.woocommerce') !== null ||
+                  el.href?.includes('/shop/') ||
+                  el.href?.includes('/product/') ||
+                  el.href?.includes('/cart/') ||
+                  el.href?.includes('/checkout/')
+              );
+          },
+          transitions: [
+              {
+                  name: 'default',
+                  async once(data) {
+                      initNextWord(data);
+                      updateBodyClasses(data.next.html);
+                      pageTransitionIn();
+                      await delay(1300);
+                      initScript();
+                      initSmoothScroll();
+                      window.scrollTo(0, 0);
+                  },
+                  async leave(data) {
+                      pageTransitionOut();
+                      await delay(50);
+                  },
+                  async enter(data) {
+                      pageTransitionIn();
+                      await delay(1300);
+                  },
+                  async beforeEnter(data) {
+                      updateNamespace(data.next.namespace);
+                      initNextWord(data);
+                      initWPFormsRemove();
+                  },
+                  async afterEnter(data) {
+                      setTimeout(() => {
+                          initScript();
+                      }, 100);
+                      setTimeout(() => {
+                          initNavigation();
+                      }, 100);
+                      initSmoothScroll();
+                      window.scrollTo(0, 0);
+                      setTimeout(() => {
+                          initWPFormsRender();
+                      }, 100);
+                  }
+              },
+              {
+                  name: 'home',
+                  from: {},
+                  to: {
+                      namespace: ['home']
+                  },
+                  async once(data) {
+                      window.scrollTo(0, 0);
+                      initHomeWord();
+                      updateBodyClasses(data.next.html);
+                      pageTransitionIn();
+                      await delay(1300);
+                      initScript();
+                      initSmoothScroll();
+                  }
+              }
+          ]
+      });
+  } catch (e) {
+      console.error("Error initializing Barba.js:", e);
+      // Initialize site without transitions in case of error
+      initScript();
+      // Hide loading screen if it exists
+      const loadingScreen = document.querySelector('.loading-screen');
+      if (loadingScreen) {
+          loadingScreen.style.display = 'none';
+      }
+  }
+}
   
   // Helper function to update body classes
   function updateBodyClasses(newHTML) {
