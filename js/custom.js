@@ -33,17 +33,18 @@ function initScript() {
   }
 
   if(isTouchScreenDevice()){
-      //TouchScreen
       initializeBasedOnNamespace();
       initMenuButton();
       customStyles();
   } else {
-      //nonTouchScreen
       initializeBasedOnNamespace();
       initMenuButton();
       if (typeof gsap !== 'undefined') {
           initMagneticEffect();
-          initStickyCursor();
+          // Only initialize sticky cursor if element exists
+          if (document.querySelector('.cursor-follower')) {
+              initStickyCursor();
+          }
       } else {
           console.warn("GSAP not loaded, skipping magnetic effect and sticky cursor");
       }
@@ -1093,6 +1094,13 @@ function pageTransitionOut() {
 // }
 function initStickyCursor() {
   const cursorFollower = document.querySelector('.cursor-follower');
+  
+  // Early return if cursor follower element doesn't exist
+  if (!cursorFollower) {
+    console.warn('Cursor follower element (.cursor-follower) not found in DOM');
+    return;
+  }
+  
   let posX = 0, posY = 0, mouseX = 0, mouseY = 0;
 
   const updateCursor = () => {
@@ -1116,8 +1124,19 @@ function initStickyCursor() {
   document.addEventListener('mousemove', throttleMouseMove);
 
   const links = document.querySelectorAll('a');
-  const hideFollower = () => cursorFollower.style.opacity = '0';
-  const showFollower = () => cursorFollower.style.opacity = '1';
+  
+  // Safe functions that check if cursorFollower exists
+  const hideFollower = () => {
+    if (cursorFollower) {
+      cursorFollower.style.opacity = '0';
+    }
+  };
+  
+  const showFollower = () => {
+    if (cursorFollower) {
+      cursorFollower.style.opacity = '1';
+    }
+  };
 
   links.forEach(link => {
     link.addEventListener('mouseenter', hideFollower);
