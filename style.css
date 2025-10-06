@@ -135,7 +135,8 @@ a {
 abbr[title] {
   border-bottom: none;
   text-decoration: underline;
-  text-decoration: underline dotted;
+  -webkit-text-decoration: underline dotted;
+          text-decoration: underline dotted;
 }
 
 /**
@@ -1080,7 +1081,8 @@ textarea {
 .archive .post-thumbnail img, .blog .post-thumbnail img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
   border-radius: 30px;
 }
 @media (max-width: 768px) {
@@ -1115,6 +1117,11 @@ textarea {
 
 h1.entry-title {
   display: none;
+}
+
+::-moz-selection {
+  background-color: #00012A; /* Your desired background color */
+  color: #ffffff; /* Optional: Change the text color */
 }
 
 ::selection {
@@ -1315,6 +1322,7 @@ h1 strong {
   z-index: 2;
   height: 800px;
   width: auto;
+  min-width: -moz-fit-content;
   min-width: fit-content;
 }
 
@@ -1429,11 +1437,6 @@ h1 strong {
   }
 }
 @keyframes blink-animation {
-  to {
-    visibility: hidden;
-  }
-}
-@-webkit-keyframes blink-animation {
   to {
     visibility: hidden;
   }
@@ -1822,6 +1825,7 @@ a:focus {
   z-index: 2;
   height: 900px;
   width: auto;
+  min-width: -moz-fit-content;
   min-width: fit-content;
 }
 @media (min-width: 1301px) {
@@ -2125,7 +2129,9 @@ a:focus {
   height: 30px;
   border-radius: 100%;
   z-index: 10000;
-  user-select: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
   pointer-events: none;
   transform: translate(2px, 2px);
 }
@@ -2191,6 +2197,10 @@ a:focus {
 * {
   scrollbar-width: thin;
   scrollbar-color: #0755B0 rgba(255, 255, 255, 0);
+}
+
+.footerEmail::-moz-selection {
+  background: #0755B0;
 }
 
 .footerEmail::selection {
@@ -2334,7 +2344,8 @@ a {
 abbr[title] {
   border-bottom: none;
   text-decoration: underline;
-  text-decoration: underline dotted;
+  -webkit-text-decoration: underline dotted;
+          text-decoration: underline dotted;
 }
 
 /**
@@ -3279,7 +3290,8 @@ textarea {
 .archive .post-thumbnail img, .blog .post-thumbnail img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
   border-radius: 30px;
 }
 @media (max-width: 768px) {
@@ -3314,6 +3326,11 @@ textarea {
 
 h1.entry-title {
   display: none;
+}
+
+::-moz-selection {
+  background-color: #00012A; /* Your desired background color */
+  color: #ffffff; /* Optional: Change the text color */
 }
 
 ::selection {
@@ -3572,11 +3589,6 @@ h1 strong {
   }
 }
 @keyframes blink-animation {
-  to {
-    visibility: hidden;
-  }
-}
-@-webkit-keyframes blink-animation {
   to {
     visibility: hidden;
   }
@@ -3965,6 +3977,7 @@ a:focus {
   z-index: 2;
   height: 900px;
   width: auto;
+  min-width: -moz-fit-content;
   min-width: fit-content;
 }
 @media (min-width: 1301px) {
@@ -4268,7 +4281,9 @@ a:focus {
   height: 30px;
   border-radius: 100%;
   z-index: 10000;
-  user-select: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
   pointer-events: none;
   transform: translate(2px, 2px);
 }
@@ -4336,6 +4351,10 @@ a:focus {
   scrollbar-color: #0755B0 rgba(255, 255, 255, 0);
 }
 
+.footerEmail::-moz-selection {
+  background: #0755B0;
+}
+
 .footerEmail::selection {
   background: #0755B0;
 }
@@ -4400,6 +4419,7 @@ a:focus {
 .page-id-830 .pricing-buttons,
 .page-id-963 .pricing-buttons,
 .page-id-980 .pricing-buttons {
+  max-width: -moz-max-content;
   max-width: max-content;
   border-radius: 40px;
   padding: 5px;
@@ -4502,4 +4522,8 @@ a:focus {
 .page-id-963 .agg-button a:hover,
 .page-id-980 .agg-button a:hover {
   background: #b30026;
+}
+
+.page-id-9 main {
+  padding: 100px;
 }/*# sourceMappingURL=style.css.map */
