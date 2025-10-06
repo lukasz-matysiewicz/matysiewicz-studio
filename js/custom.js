@@ -1,53 +1,27 @@
 /* ------------------------------------------------------ General ------------------------------------------------------ */
-// Check and register GSAP plugins safely
-if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
-  gsap.registerPlugin(ScrollTrigger);
-} else {
-  console.warn("GSAP or ScrollTrigger not available");
-}
-
+gsap.registerPlugin(ScrollTrigger);
 let locomotiveScroll;
 let nextNamespace = '';
-let currentNamespace = '';
 
-// Initialize page transitions safely
-document.addEventListener('DOMContentLoaded', function() {
-  if (typeof barba !== 'undefined') {
-      console.log("Barba.js found, initializing page transitions");
-      initPageTransitions();
-  } else {
-      console.warn("Barba.js not available, initializing without transitions");
-      initScript();
-      
-      // Hide loading screen if it exists
-      const loadingScreen = document.querySelector('.loading-screen');
-      if (loadingScreen) {
-          loadingScreen.style.display = 'none';
-      }
-  }
-});
+initPageTransitions();
 
 function initScript() {
+    
   function isTouchScreenDevice() {
       return 'ontouchstart' in window || navigator.maxTouchPoints;      
-  }
+  };
 
   if(isTouchScreenDevice()){
+      //TouchScreen
       initializeBasedOnNamespace();
       initMenuButton();
       customStyles();
   } else {
+      //nonTouchScreen
       initializeBasedOnNamespace();
       initMenuButton();
-      if (typeof gsap !== 'undefined') {
-          initMagneticEffect();
-          // Only initialize sticky cursor if element exists
-          if (document.querySelector('.cursor-follower')) {
-              initStickyCursor();
-          }
-      } else {
-          console.warn("GSAP not loaded, skipping magnetic effect and sticky cursor");
-      }
+      initMagneticEffect();
+      initStickyCursor();
   }
 }
 
@@ -81,16 +55,7 @@ function initializeBasedOnNamespace() {
         break;
       case "wordpress-plugins":
         initLoaderPlugins();
-        // initFooter();
-        break;
-      case 'wordpress-plugins':
-      case 'animated-gutenberg-gallery':
-      case 'animated-gutenberg-slider':
-      case 'case-studies':
-      case 'my-account':
-      case 'product':  // Add this for WooCommerce single product
-      case 'shop':     // Add this for WooCommerce shop page
-        // initFooter();
+        initFooter();
         break;
     }
   } else {
@@ -280,6 +245,10 @@ function initLoaderRecentWork() {
   });
 }
 
+/* ------------------------------------------------------ Wordpress Plugins ------------------------------------------------------ */
+function initLoaderPlugins() { 
+}
+
 function initLazyLoadAndPlayVideoInview() {
   let allVideoDivs = gsap.utils.toArray('.playpauze');
 
@@ -411,12 +380,15 @@ function initLoaderAbout() {
 /* ------------------------------------------------------ Basic Footer ------------------------------------------------------ */
 
 function initFooter() { 
+    const footerContact = document.querySelector('.footer-contact');
+    if (!footerContact) return;
+
     const tl = gsap.timeline();
 
     // Corrected set method usage
     // tl.set('.me-footer img', { css: { zIndex: 2 } });
 
-    tl.fromTo('.footer-contact', { 
+    tl.fromTo(footerContact, { 
         y: '+=700', 
         opacity: 0
     }, { 
@@ -656,48 +628,40 @@ function initHomeWord(data) {
 }
 
 function initNextWord(data) {
-    let parser = new DOMParser();
-    let dom = parser.parseFromString(data.next.html, 'text/html');
-    
-    nextNamespace = dom.querySelector('[data-barba="container"]').getAttribute('data-barba-namespace');
-    updateNamespace(nextNamespace);
+  let parser = new DOMParser();
+  let dom = parser.parseFromString(data.next.html, 'text/html');
 
-    // Define namespace to display text mapping
-    const namespaceToText = {
-        'home': 'Home',
-        'about-me': 'About Me',
-        'contact': 'Contact',
-        'recent-work': 'Portfolio',
-        'wordpress-plugins': 'WordPress Plugins',
-        'case-studies': 'Case Studies',
-        'my-account': 'My Account',
-        'archive': 'Archive',
-        'search': 'Search Results',
-        'error-404': '404 Error',
-        'thank-you': 'Thank you',
-        'animated-gutenberg-gallery': 'Animated Gutenberg Gallery',
-        'animated-gutenberg-slider': 'Animated Gutenberg Slider',
-        'product': 'WordPress Plugins',
-        'shop': 'Sklep',
-        'terms-and-conditions': 'Terms',
-        'cart': 'Cart'
-    };
+  // Remove local declaration to use the global variable
+  nextNamespace = dom.querySelector('[data-barba="container"]').getAttribute('data-barba-namespace');
+  
+  updateNamespace(nextNamespace);
 
-    // Get display text with fallback
-    let displayText = namespaceToText[nextNamespace] || 'Page';
+  // Define your namespace to display text mapping
+  const namespaceToText = {
+    'home': 'Home',
+    'about-me': 'About Me',
+    'contact': 'Contact',
+    'recent-work': 'Work',
+    'wordpress-plugins': 'Wordpress Plugins',
+    'case-studies': 'Case Studies',
+    // Add more mappings as necessary
+  };
 
-    // Update loading words
-    const loadingWords = document.querySelector('.loading-words');
-    if (loadingWords) {
-        const h2Elements = loadingWords.querySelectorAll('h2');
-        h2Elements.forEach((h2, index) => {
-            if (index === 0 || index === h2Elements.length - 1) {
-                h2.textContent = '';
-            } else {
-                h2.textContent = displayText;
-            }
-        });
-    }
+  // Determine the text to display based on the namespace
+  let displayText = namespaceToText[nextNamespace] || '404';
+
+  // Update all h2 elements inside .loading-words
+  const loadingWords = document.querySelector('.loading-words');
+  if (loadingWords) {
+    const h2Elements = loadingWords.querySelectorAll('h2');
+    h2Elements.forEach((h2, index) => {
+      if (index === 0 || index === h2Elements.length - 1) {
+        h2.textContent = ''; // Clear the first and last h2 elements
+      } else {
+        h2.textContent = displayText; // Update the 2nd, 3rd, and 4th h2 elements
+      }
+    });
+  }
 }
 
 function delay(n) {
@@ -754,30 +718,12 @@ window.initWPFormsRender = function() {
 // Track initialized scripts across page transitions
 // var initialized_scripts = [];
 
-// barba.hooks.afterEnter((data) => {
-//   var parser = new DOMParser();
-//   var htmlDoc = parser.parseFromString(data.next.html.replace(/(<\/?)body( .+?)?>/gi, '$1notbody$2>'), 'text/html');
-//   var bodyClasses = htmlDoc.querySelector('notbody').getAttribute('class');
-//   document.body.setAttribute('class', bodyClasses);
-
-//   var new_script_tags = htmlDoc.querySelectorAll('script');
-//   var new_imports = [];
-//   var new_evaluations = '';
-
-//   new_script_tags.forEach(s => {
-//       let src = s.getAttribute('src');
-//       if (src && !initialized_scripts.includes(src)) {
-//           new_imports.push(src);
-//           initialized_scripts.push(src); // Add to initialized scripts
-//       } else if (!src) {
-//           new_evaluations += s.innerHTML;
-//       }
-//   });
-
-//   loadScriptsSequentially(new_imports, () => {
-//       eval(new_evaluations);
-//   });
-// });
+barba.hooks.afterEnter((data) => {
+  var parser = new DOMParser();
+  var htmlDoc = parser.parseFromString(data.next.html.replace(/(<\/?)body( .+?)?>/gi, '$1notbody$2>'), 'text/html');
+  var bodyClasses = htmlDoc.querySelector('notbody').getAttribute('class');
+  document.body.setAttribute('class', bodyClasses);
+});
 
 // function loadScriptsSequentially(scripts, callback) {
 //   let loadScript = (index) => {
@@ -811,234 +757,106 @@ function initSmoothScroll(container) {
   });
 }
 function initPageTransitions() {
-  // Check if barba is defined
-  if (typeof barba === 'undefined') {
-      console.error('Barba.js is not loaded, cannot initialize page transitions');
-      // Initialize other functionality without page transitions
-      initScript();
-      return;
-  }
-  
-  // Check if document.body exists and if we're on a WooCommerce page
-  if (!document.body || (document.body.classList && document.body.classList.contains('woocommerce-page'))) {
-      const loadingContainer = document.querySelector('.loading-container');
-      if (loadingContainer) {
-          loadingContainer.style.display = 'none';
-      }
-      // Initialize other functionality
-      initScript();
-      return;
-  }
+  barba.init({
+    sync: true,
+    debug: false,
+    timeout:7000,
+    transitions: [{
+      name: 'default',
+      async once(data) {
+        initNextWord(data);
+        pageTransitionIn();
+        await delay(1300);
+        initScript();
+        //initStickyCursor();
+        initSmoothScroll();
+        window.scrollTo(0, 0);
+        //initLazyLoadAndPlayVideoInview();
+      },
+      async leave(data) {
+        pageTransitionOut()
+        await delay(100);
+      },
+      async enter(data) {
+        await delay(100);
+        pageTransitionIn();
+        await delay(1300);
+      },
+      async beforeEnter(data) {
+        //updateNamespace(data.next.namespace);
+        initNextWord(data);
+        //wpforms.init();
+        initWPFormsRemove();
+      },
+      async afterEnter(data) {
+        // initNewScripts();
+        setTimeout(() => {
+          initScript();
+          //wpforms.init();
+          //window.initWPFormsRender();
+        }, 100);
+        setTimeout(() => {
+          initNavigation();
+        }, 100); 
+        initSmoothScroll();
+        //initWPForms();
+        window.scrollTo(0, 0);
+        setTimeout(() => {
+          initWPFormsRender();
+        }, 100); 
+      },
+    }, 
+    {
+      name: 'home',
+      from: {
+      },
+      to: {
+        namespace: ['home']
+      },
+      async once(data) {
+        window.scrollTo(0, 0);
+        initHomeWord();
+        pageTransitionIn();
+        await delay(1300);
+        initScript();
+        //initStickyCursor();
+        initSmoothScroll();
+        //initLazyLoadAndPlayVideoInview();
+      },
+    }]
+  });
 
-  // Continue with normal Barba initialization
-  try {
-      barba.init({
-          sync: true,
-          debug: false,
-          timeout: 7000,
-          prevent: ({ el }) => {
-              // Prevent Barba from handling WooCommerce links
-              return (
-                  el.classList.contains('woocommerce') ||
-                  el.closest('.woocommerce') !== null ||
-                  el.href?.includes('/shop/') ||
-                  el.href?.includes('/product/') ||
-                  el.href?.includes('/cart/') ||
-                  el.href?.includes('/checkout/')
-              );
-          },
-          transitions: [
-              {
-                  name: 'default',
-                  async once(data) {
-                      initNextWord(data);
-                      updateBodyClasses(data.next.html);
-                      pageTransitionIn();
-                      await delay(1300);
-                      initScript();
-                      initSmoothScroll();
-                      window.scrollTo(0, 0);
-                  },
-                  async leave(data) {
-                      pageTransitionOut();
-                      await delay(50);
-                  },
-                  async enter(data) {
-                      pageTransitionIn();
-                      await delay(1300);
-                  },
-                  async beforeEnter(data) {
-                      updateNamespace(data.next.namespace);
-                      initNextWord(data);
-                      initWPFormsRemove();
-                  },
-                  async afterEnter(data) {
-                      setTimeout(() => {
-                          initScript();
-                      }, 100);
-                      setTimeout(() => {
-                          initNavigation();
-                      }, 100);
-                      initSmoothScroll();
-                      window.scrollTo(0, 0);
-                      setTimeout(() => {
-                          initWPFormsRender();
-                      }, 100);
-                  }
-              },
-              {
-                  name: 'home',
-                  from: {},
-                  to: {
-                      namespace: ['home']
-                  },
-                  async once(data) {
-                      window.scrollTo(0, 0);
-                      initHomeWord();
-                      updateBodyClasses(data.next.html);
-                      pageTransitionIn();
-                      await delay(1300);
-                      initScript();
-                      initSmoothScroll();
-                  }
-              }
-          ]
-      });
-  } catch (e) {
-      console.error("Error initializing Barba.js:", e);
-      // Initialize site without transitions in case of error
-      initScript();
-      // Hide loading screen if it exists
-      const loadingScreen = document.querySelector('.loading-screen');
-      if (loadingScreen) {
-          loadingScreen.style.display = 'none';
-      }
-  }
+
 }
-  
-  // Helper function to update body classes
-  function updateBodyClasses(newHTML) {
-    const parser = new DOMParser();
-    const dom = parser.parseFromString(newHTML, 'text/html');
-    const newBodyClasses = dom.body.className;
-    
-    // Remove all existing classes from body
-    document.body.className = '';
-    
-    // Add new classes
-    document.body.className = newBodyClasses;
-  }
-  
-  // Helper function to clean up page-specific styles
-  function cleanupPageStyles() {
-    const elementsWithStyles = document.querySelectorAll(`
-      .post-thumbnail:not(.archive-posts *),
-      .post-content:not(.archive-posts *),
-      [class*="page-"],
-      [class*="single-"]
-    `);
-  
-    // Remove inline styles
-    elementsWithStyles.forEach(element => {
-      if (element.style.length > 0) {
-        element.removeAttribute('style');
-      }
-    });
-  
-    // Remove any transition-related classes
-    elementsWithStyles.forEach(element => {
-      const classList = Array.from(element.classList);
-      classList.forEach(className => {
-        if (className.includes('gsap') || className.includes('transition')) {
-          element.classList.remove(className);
-        }
-      });
-    });
-  }
-  
-  // Function for archive-specific cleanup
-  function cleanupArchiveStyles() {
-    const archiveElements = document.querySelectorAll('.archive-posts *, .page-header, .archive-title');
-    archiveElements.forEach(element => {
-      if (element.style.length > 0) {
-        element.removeAttribute('style');
-      }
-      // Remove only transition-related classes
-      const classList = Array.from(element.classList);
-      classList.forEach(className => {
-        if (className.includes('gsap') || className.includes('transition')) {
-          element.classList.remove(className);
-        }
-      });
-    });
-  }
-  
-  // Helper function for delays
-  function delay(n) {
-    n = n || 2000;
-    return new Promise((done) => {
-      setTimeout(() => {
-        done();
-      }, n);
-    });
-  }
-  
-  // Animation - Page transition In
-  function pageTransitionIn() {
-    var tl = gsap.timeline();
-  
-    // Reset words state first
-    tl.set(".loading-words h2", {
-      y: "100px",
-      opacity: 0,
-      display: "none"
-    })
-    .set("html", { cursor: "wait" })
-    // Instant background position
-    .set(".loading-screen", { 
-      top: "0%",
-      onComplete: () => {
-        document.body.style.display = 'none';
-        document.body.offsetHeight;
-        document.body.style.display = '';
-      }
-    })
-    // Delay before starting word animations
-    .add(() => {}, "+=0.5") // Pure delay
-    // Animate words
-    .to(".loading-words h2", { 
-      duration: 0.8, 
-      y: "-100px", 
-      opacity: 1, 
-      ease: "Power4.easeOut", 
-      stagger: 0.1, 
-      display: "block" 
-    })
-    .to(".loading-screen", { 
-      duration: 0.8, 
-      top: "-100%", 
-      ease: "Power3.easeInOut" 
-    }, "+=0.5")
-    .set("html", { cursor: "auto" })
-    .set(".loading-screen", { top: "calc(100%)" });
-  }
 
+
+// Animation - Page transition In
+function pageTransitionIn() {
+  var tl = gsap.timeline();
+
+  // Remove initial set of opacity to 0 for .loading-words here if you want it visible initially
+  tl.set("html", { cursor: "wait" })
+    // .call(function () { locomotiveScroll.pauze(); })
+    .to(".loading-screen", { duration: 0.5, top: "0%", ease: "Power4.easeIn" })
+    .to(".loading-words h2", { duration: 0.8, y: "-100px", opacity: 1, ease: "Power4.easeOut", stagger: 0.1, display: "block" }, "-=0.25")
+    .to(".loading-screen", { duration: 0.8, top: "-100%", ease: "Power3.easeInOut" }, "-=0.2")
+    .set("html", { cursor: "auto" })
+    .set(".loading-screen", { top: "calc(100%)" })
+    // .call(function () { locomotiveScroll.start(); })
+}
+
+// Animation - Page transition Out
 function pageTransitionOut() {
   var tl = gsap.timeline();
 
-  tl.set("[data-scroll-container]", {
-    opacity: 0
-  })
-  .to("[data-scroll-container]", {
-    duration: 0.1,
-    y: "-50px",
-    ease: "Power1.easeOut",
-    clearProps: "all",
-    onComplete: () => {
-      document.querySelectorAll('.post-thumbnail:not(.archive-posts *), .post-content:not(.archive-posts *)').forEach(element => {
-        element.removeAttribute('style');
-      });
-    }
+  tl.to("[data-scroll-container]", {
+    duration: 0.8,
+    y: "-100px",
+    //y: "0", 
+    stagger: 0.1,
+    ease: "Expo.easeOut",
+    delay: 0.8,
+    clearProps: "true"
   });
 }
 
@@ -1094,13 +912,6 @@ function pageTransitionOut() {
 // }
 function initStickyCursor() {
   const cursorFollower = document.querySelector('.cursor-follower');
-  
-  // Early return if cursor follower element doesn't exist
-  if (!cursorFollower) {
-    console.warn('Cursor follower element (.cursor-follower) not found in DOM');
-    return;
-  }
-  
   let posX = 0, posY = 0, mouseX = 0, mouseY = 0;
 
   const updateCursor = () => {
@@ -1124,19 +935,8 @@ function initStickyCursor() {
   document.addEventListener('mousemove', throttleMouseMove);
 
   const links = document.querySelectorAll('a');
-  
-  // Safe functions that check if cursorFollower exists
-  const hideFollower = () => {
-    if (cursorFollower) {
-      cursorFollower.style.opacity = '0';
-    }
-  };
-  
-  const showFollower = () => {
-    if (cursorFollower) {
-      cursorFollower.style.opacity = '1';
-    }
-  };
+  const hideFollower = () => cursorFollower.style.opacity = '0';
+  const showFollower = () => cursorFollower.style.opacity = '1';
 
   links.forEach(link => {
     link.addEventListener('mouseenter', hideFollower);

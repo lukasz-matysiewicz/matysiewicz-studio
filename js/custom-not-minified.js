@@ -54,7 +54,7 @@ function initializeBasedOnNamespace() {
         initFooter();
         break;
       case "wordpress-plugins":
-        initLoaderPlugins(), 
+        initLoaderPlugins();
         initFooter();
         break;
     }
@@ -245,6 +245,10 @@ function initLoaderRecentWork() {
   });
 }
 
+/* ------------------------------------------------------ Wordpress Plugins ------------------------------------------------------ */
+function initLoaderPlugins() { 
+}
+
 function initLazyLoadAndPlayVideoInview() {
   let allVideoDivs = gsap.utils.toArray('.playpauze');
 
@@ -376,12 +380,15 @@ function initLoaderAbout() {
 /* ------------------------------------------------------ Basic Footer ------------------------------------------------------ */
 
 function initFooter() { 
+    const footerContact = document.querySelector('.footer-contact');
+    if (!footerContact) return;
+
     const tl = gsap.timeline();
 
     // Corrected set method usage
     // tl.set('.me-footer img', { css: { zIndex: 2 } });
 
-    tl.fromTo('.footer-contact', { 
+    tl.fromTo(footerContact, { 
         y: '+=700', 
         opacity: 0
     }, { 
@@ -636,6 +643,7 @@ function initNextWord(data) {
     'contact': 'Contact',
     'recent-work': 'Work',
     'wordpress-plugins': 'Wordpress Plugins',
+    'case-studies': 'Case Studies',
     // Add more mappings as necessary
   };
 
@@ -710,30 +718,12 @@ window.initWPFormsRender = function() {
 // Track initialized scripts across page transitions
 // var initialized_scripts = [];
 
-// barba.hooks.afterEnter((data) => {
-//   var parser = new DOMParser();
-//   var htmlDoc = parser.parseFromString(data.next.html.replace(/(<\/?)body( .+?)?>/gi, '$1notbody$2>'), 'text/html');
-//   var bodyClasses = htmlDoc.querySelector('notbody').getAttribute('class');
-//   document.body.setAttribute('class', bodyClasses);
-
-//   var new_script_tags = htmlDoc.querySelectorAll('script');
-//   var new_imports = [];
-//   var new_evaluations = '';
-
-//   new_script_tags.forEach(s => {
-//       let src = s.getAttribute('src');
-//       if (src && !initialized_scripts.includes(src)) {
-//           new_imports.push(src);
-//           initialized_scripts.push(src); // Add to initialized scripts
-//       } else if (!src) {
-//           new_evaluations += s.innerHTML;
-//       }
-//   });
-
-//   loadScriptsSequentially(new_imports, () => {
-//       eval(new_evaluations);
-//   });
-// });
+barba.hooks.afterEnter((data) => {
+  var parser = new DOMParser();
+  var htmlDoc = parser.parseFromString(data.next.html.replace(/(<\/?)body( .+?)?>/gi, '$1notbody$2>'), 'text/html');
+  var bodyClasses = htmlDoc.querySelector('notbody').getAttribute('class');
+  document.body.setAttribute('class', bodyClasses);
+});
 
 // function loadScriptsSequentially(scripts, callback) {
 //   let loadScript = (index) => {
